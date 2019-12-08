@@ -82,7 +82,9 @@ class VAMonth {
     }
     
     private func state(for date: Date) -> VADayState {
-        if !calendar.isDate(date, equalTo: lastMonthDay, toGranularity: .month) {
+        if date == Date() {
+            return .today
+        } else if !calendar.isDate(date, equalTo: lastMonthDay, toGranularity: .month) {
             return .out
         } else if selectedDays.contains(where: { calendar.isDate($0.date , inSameDayAs: date) }) {
             return .selected
