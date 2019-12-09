@@ -21,5 +21,11 @@ struct VAFormatters {
         formatter.dateFormat = "LLLL"
         return formatter
     }()
+
+    static let basicISODateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        return formatter
+    }()
     
 }

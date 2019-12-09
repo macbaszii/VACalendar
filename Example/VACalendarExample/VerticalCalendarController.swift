@@ -113,6 +113,8 @@ extension VerticalCalendarController: VADayViewAppearanceDelegate {
             return .white
         case .unavailable:
             return .lightGray
+        case .today:
+            return .red
         default:
             return .black
         }

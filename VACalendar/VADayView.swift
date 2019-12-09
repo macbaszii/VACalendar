@@ -83,7 +83,11 @@ class VADayView: UIView {
         )
         dateLabel.center = CGPoint(x: frame.width / 2, y: frame.height / 2)
 
-        setState(day.state)
+        if VAFormatters.basicISODateFormatter.string(from: day.date) == VAFormatters.basicISODateFormatter.string(from: Date()) {
+            setState(.today)
+        } else {
+            setState(day.state)
+        }
         addSubview(dateLabel)
         updateSupplementaryViews()
     }

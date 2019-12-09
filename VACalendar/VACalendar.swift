@@ -34,15 +34,25 @@ public class VACalendar {
     public init(
         startDate: Date? = nil,
         endDate: Date? = nil,
-        selectedDate: Date? = Date(),
+        selectedDate: Date? = nil,
         calendar: Calendar = Calendar.current) {
         self.calendar = calendar
-        
+
+
         if let selectedDate = selectedDate {
-            let day = VADay(date: selectedDate, state: .selected, calendar: calendar)
+            let day: VADay
+
+            if selectedDate == Date() {
+                day = VADay(date: selectedDate, state: .selected, calendar: calendar)
+            } else {
+                day = VADay(date: Date(), state: .today, calendar: calendar)
+            }
             selectedDays = [day]
+        } else {
+            let today = VADay(date: Date(), state: .today, calendar: calendar)
+            selectedDays = [today]
         }
-        
+
         let startDate = startDate ?? calendar.date(byAdding: .year, value: -1, to: Date())!
         let endDate = endDate ?? calendar.date(byAdding: .year, value: 1, to: Date())!
         months = generateMonths(from: startDate, endDate: endDate)
