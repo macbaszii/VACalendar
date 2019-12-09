@@ -30,7 +30,15 @@ class VAWeek {
     }
     
     func deselectAll() {
-        days.forEach { $0.setSelectionState(.available) }
+        days.forEach {
+            if !isToday($0.date) {
+                $0.setSelectionState(.available)
+            }
+        }
+    }
+
+    func isToday(_ date: Date) -> Bool {
+        return VAFormatters.basicISODateFormatter.string(from: date) == VAFormatters.basicISODateFormatter.string(from: Date())
     }
     
     func setDaySelectionState(_ day: VADay, state: VADayState)  {
