@@ -33,6 +33,8 @@ class VAWeek {
         days.forEach {
             if !isToday($0.date) {
                 $0.setSelectionState(.available)
+            } else {
+                $0.setSelectionState(.today)
             }
         }
     }
